@@ -1,17 +1,56 @@
 import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import styles from 'styled-components';
 
-export default () => (
-    <header>
-        <ul>
-            <li>
-                <a href="/">Movies</a>
-            </li>
-            <li>
-                <a href="/tv">TV</a>
-            </li>
-            <li>
-                <a href="/search">Search</a>
-            </li>
-        </ul>
-    </header>
-)
+const Header = styles.header`
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    background-color: rgba(20, 20, 20, .8);
+    z-index: 10;
+    box-shadow: 0px 1px 5px 2px rgba(0, 0, 0, 0.8);
+`;
+
+const List = styles.ul`
+    display: flex;
+`;
+
+const Item = styles.li`
+    width: 80px;
+    height: 50px;
+    text-align: center;
+    border-bottom: 5px solid ${props => props.current ? '#3498db' : 'transparent'};
+    transition: border-bottom .5s ease-in-out;
+`;
+
+const ItemLink = styles(Link)`
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+
+    }
+`;
+
+export default withRouter(({ location: { pathname } }) => (
+    <Header>
+        <List>
+            <Item current={pathname === "/"}>
+                <ItemLink to="/">Movies</ItemLink>
+            </Item>
+            <Item current={pathname === "/tv"}>
+                <ItemLink to="/tv">TV</ItemLink>
+            </Item>
+            <Item current={pathname === "/search"}>
+                <ItemLink to="/search">Search</ItemLink>
+            </Item>
+        </List>
+    </Header>
+));
