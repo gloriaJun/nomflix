@@ -15,13 +15,13 @@ https://www.themoviedb.org/documentation/api
 
 ### Movies
 
-- [ ] Now playing
-- [ ] Upcoming
+- [x] Now playing
+- [x] Upcoming
 - [ ] Top Rated
-- [ ] Popular
+- [x] Popular
 
 ### TV
 
-- [ ] Top Rated
-- [ ] Popular
-- [ ] Airing Today
+- [x] Top Rated
+- [x] Popular
+- [x] Airing Today
