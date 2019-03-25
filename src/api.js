@@ -41,3 +41,5 @@ export const tvApi = {
         }
     })
 };
+
+export const getData = resp => resp.data.results;
