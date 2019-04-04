@@ -1,27 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Helmet from 'react-helmet';
 import styled from 'styled-components';
 
 import Loader from 'components/Loader';
-import Message from "components/Message";
-import {renderMovieSection} from "components/renderUtility";
+import Message from 'components/Message';
+import Poster from 'components/Poster';
+import {renderMovieSection} from 'components/renderUtility';
 
 const Container = styled.div`
   padding: 0 20px;
 `;
 
-const HomePresenter = ({ nowPlaying, popular, upcoming, error, loading }) =>
-  loading ?
-    <Loader /> :
-    (
-      <Container>
-        {renderMovieSection('Now Playing', nowPlaying)}
-        {renderMovieSection('Popular Movies', popular)}
-        {renderMovieSection('Upcoming Playing', upcoming)}
-        {error && <Message text={error}/>}
-      </Container>
-  );
-
+const HomePresenter = ({ nowPlaying, popular, upcoming, error, loading }) => (
+  <>
+    <Helmet>
+      <title>Movies | Nomflix</title>
+    </Helmet>
+    {
+      loading ?
+        <Loader/> :
+        (
+          <Container>
+            {renderMovieSection('Now Playing', nowPlaying, Poster)}
+            {renderMovieSection('Popular Movies', popular, Poster)}
+            {renderMovieSection('Upcoming Playing', upcoming, Poster)}
+            {error && <Message text={error}/>}
+          </Container>
+        )
+    }
+  </>
+);
 
 HomePresenter.propTypes = {
   nowPlaying: PropTypes.array,
